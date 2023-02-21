@@ -12,7 +12,7 @@ class BattlesController < ApplicationController
         puts("before")
         puts(battle_params)
 
-        @scene = Battle.maximum(:scene)+1
+        @scene = (Battle.maximum(:scene) || 0) + 1 
         battle_params = battle_params.map do |item|
             item[:user] = User.find_or_create_by!(name:item["name"])
             item[:sake] = Sake.find_or_create_by!(name:item["sake"], ratio:item["ratio"])
@@ -27,7 +27,7 @@ class BattlesController < ApplicationController
 
         render json: {message: 'success'}
 
-    rescue => e
-        render json: {message: e}
+    # rescue => e
+    #     render json: {message: e}
     end
 end
