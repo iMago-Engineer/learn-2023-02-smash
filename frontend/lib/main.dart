@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './pages/create.dart';
 import './pages/ranking.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(MyApp());
 
@@ -25,7 +26,22 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _screen = 0;
 
-  static List<Widget> _pageList = [Create(), Ranking()];
+  @override
+  void initState() {
+    print("MyHomePage画面が表示されました。");
+
+    super.initState();
+  }
+
+  static List<Widget> _pageList = [
+    Create(),
+  ];
+  void _callAPI() async {
+    final url = Uri.parse('http://127.0.0.1:3000/battles/all');
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  }
 
   // ページ下部に並べるナビゲーションメニューの一覧
   List<BottomNavigationBarItem> myBottomNavBarItems() {
