@@ -1,66 +1,64 @@
 import 'package:flutter/material.dart';
+import './pages/create.dart';
+import './pages/ranking.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'スマブラ戦績アプリ',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _screen = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  static List<Widget> _pageList = [Create(), Ranking()];
+
+  // ページ下部に並べるナビゲーションメニューの一覧
+  List<BottomNavigationBarItem> myBottomNavBarItems() {
+    return [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.edit_note),
+        label: '記録する',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.leaderboard),
+        label: 'ランキング',
+      ),
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        title: Text(
+          'スマブラ戦績アプリ',
+          style: TextStyle(fontSize: 16),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      body: _pageList[_screen],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _screen,
+        onTap: (index) {
+          setState(() {
+            _screen = index;
+          });
+        },
+        items: myBottomNavBarItems(),
       ),
     );
   }
