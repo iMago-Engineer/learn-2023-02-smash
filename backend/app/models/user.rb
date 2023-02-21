@@ -6,7 +6,7 @@ class User < ApplicationRecord
     def alchohol_amount
         sum = 0
         self.battles.each do |battle|
-            sum += battle.amount * battle.sake.ratio/100 *0.8
+            sum += battle.amount * battle.sake.ratio/100.0 *0.8
         end
         return sum
     end

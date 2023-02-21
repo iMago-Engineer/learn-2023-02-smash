@@ -15,8 +15,9 @@ class BattlesController < ApplicationController
         @scene = (Battle.maximum(:scene) || 0) + 1 
         battle_params = battle_params.map do |item|
             item[:user] = User.find_or_create_by!(name:item["name"])
-            item[:sake] = Sake.find_or_create_by!(name:item["sake"], ratio:item["ratio"])
+            Sake.find_by(name:item["sake"]).nil? ? Sake.create!(name:item["sake"], ratio:item["ratio"]):nil
             item[:scene] = @scene
+            item[:sake] = Sake.find_by!(name: item["sake"])
             item.slice(:amount, :rank, :user, :sake, :scene)
         end
 
