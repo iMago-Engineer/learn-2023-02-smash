@@ -10,4 +10,13 @@ class User < ApplicationRecord
         end
         return sum
     end
+    def win_rate
+        win = 0
+        self.battles.each do |battle|
+            if battle.rank == 1
+                win += 1
+            end
+        end
+        return (win.to_f/self.battles.count.to_f)*100
+    end
 end

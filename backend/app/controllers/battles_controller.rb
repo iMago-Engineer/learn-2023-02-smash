@@ -3,7 +3,7 @@ class BattlesController < ApplicationController
     # before_action :set_sake, only: [:create]
     def index
         users = User.all
-        render json: users.map { |user| {name: user.name, rank: user.ranking, amount: user.alchohol_amount} }
+        render json: users.map { |user| {name: user.name, amount: user.alchohol_amount, win_rate:user.win_rate} }
     end
 
     def create
