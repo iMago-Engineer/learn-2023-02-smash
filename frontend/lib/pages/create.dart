@@ -51,7 +51,7 @@ Future<List<Sake>> fetchSake() async {
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load create');
   }
 }
 
@@ -195,14 +195,14 @@ class _CreateRecord extends State<Create> {
                                           TextFormField(
                                             controller: _amountController1,
                                             decoration: InputDecoration(
-                                                labelText: 'お酒の量'),
+                                                labelText: 'お酒の量(ml)'),
                                             onChanged: (value) =>
                                                 amount1 = value,
                                           ),
                                           TextFormField(
                                             controller: _ratioController1,
                                             decoration: InputDecoration(
-                                                labelText: 'お酒の度数'),
+                                                labelText: 'お酒の度数(%)'),
                                             onChanged: (value) =>
                                                 ratio1 = value,
                                           ),
@@ -259,14 +259,14 @@ class _CreateRecord extends State<Create> {
                                           TextFormField(
                                             controller: _amountController2,
                                             decoration: InputDecoration(
-                                                labelText: 'お酒の量'),
+                                                labelText: 'お酒の量(ml)'),
                                             onChanged: (value) =>
                                                 amount2 = value,
                                           ),
                                           TextFormField(
                                             controller: _ratioController2,
                                             decoration: InputDecoration(
-                                                labelText: 'お酒の度数'),
+                                                labelText: 'お酒の度数(%)'),
                                             onChanged: (value) =>
                                                 ratio2 = value,
                                           ),
@@ -321,14 +321,14 @@ class _CreateRecord extends State<Create> {
                                           TextFormField(
                                             controller: _amountController3,
                                             decoration: InputDecoration(
-                                                labelText: 'お酒の量'),
+                                                labelText: 'お酒の量(ml)'),
                                             onChanged: (value) =>
                                                 amount3 = value,
                                           ),
                                           TextFormField(
                                             controller: _ratioController3,
                                             decoration: InputDecoration(
-                                                labelText: 'お酒の度数'),
+                                                labelText: 'お酒の度数(%)'),
                                             onChanged: (value) =>
                                                 ratio3 = value,
                                           ),
@@ -407,13 +407,13 @@ class _CreateRecord extends State<Create> {
                                 ],
                               );
                             }
-                            return Center(child: Text('エラーが発生しました'));
+                            return Center(child: CircularProgressIndicator());
                           });
                     } else if (snapshot.hasError) {
                       return Center(child: Text("エラーが発生しました"));
                     }
                     {
-                      return Center(child: Text('エラーが発生しました'));
+                      return Center(child: CircularProgressIndicator());
                     }
                   }))),
       floatingActionButton: FloatingActionButton(

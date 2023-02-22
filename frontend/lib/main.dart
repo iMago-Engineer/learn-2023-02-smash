@@ -33,9 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  static List<Widget> _pageList = [
-    Create(),
-  ];
+  static List<Widget> _pageList = [Create(), Ranking()];
   void _callAPI() async {
     final url = Uri.parse('http://127.0.0.1:3000/battles/all');
     var response = await http.get(url);
