@@ -112,6 +112,16 @@ class _CreateRecord extends State<Create> {
   var ratio1, ratio2, ratio3;
   var newUser, newSake;
 
+  var _rankController1 = TextEditingController();
+  var _rankController2 = TextEditingController();
+  var _rankController3 = TextEditingController();
+  var _amountController1 = TextEditingController();
+  var _amountController2 = TextEditingController();
+  var _amountController3 = TextEditingController();
+  var _ratioController1 = TextEditingController();
+  var _ratioController2 = TextEditingController();
+  var _ratioController3 = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,244 +144,271 @@ class _CreateRecord extends State<Create> {
                               nameList = addedNameList +
                                   names.map((e) => e.name).toList();
                               print(nameList);
-                              return Column(children: [
-                                Card(
-                                  elevation: 8,
-                                  child: Form(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                            labelText: '名前',
-                                          ),
-                                          value: selectedUser1Value,
-                                          items: nameList
-                                              .map((String list) =>
-                                                  DropdownMenuItem(
-                                                      value: list,
-                                                      child: Text(list)))
-                                              .toList(),
-                                          onChanged: (String? value) {
-                                            setState(() {
-                                              selectedUser1Value = value!;
-                                            });
-                                          },
-                                        ),
-                                        TextFormField(
-                                          decoration:
-                                              InputDecoration(labelText: '順位'),
-                                          onChanged: (value) => rank1 = value,
-                                        ),
-                                        DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                            labelText: 'お酒',
-                                          ),
-                                          value: dropdownValue1,
-                                          items: sakeList
-                                              .map((String list) =>
-                                                  DropdownMenuItem(
-                                                      value: list,
-                                                      child: Text(list)))
-                                              .toList(),
-                                          onChanged: (String? value) {
-                                            setState(() {
-                                              dropdownValue1 = value!;
-                                            });
-                                          },
-                                        ),
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                              labelText: 'お酒の量'),
-                                          onChanged: (value) => amount1 = value,
-                                        ),
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                              labelText: 'お酒の度数'),
-                                          onChanged: (value) => ratio1 = value,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Card(
+                              return Column(
+                                children: [
+                                  Card(
                                     elevation: 8,
                                     child: Form(
-                                        child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                            labelText: '名前',
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                              labelText: '名前',
+                                            ),
+                                            value: selectedUser1Value,
+                                            items: nameList
+                                                .map((String list) =>
+                                                    DropdownMenuItem(
+                                                        value: list,
+                                                        child: Text(list)))
+                                                .toList(),
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                selectedUser1Value = value!;
+                                              });
+                                            },
                                           ),
-                                          value: selectedUser2Value,
-                                          items: nameList
-                                              .map((String list) =>
-                                                  DropdownMenuItem(
-                                                      value: list,
-                                                      child: Text(list)))
-                                              .toList(),
-                                          onChanged: (String? value) {
-                                            setState(() {
-                                              selectedUser2Value = value!;
-                                            });
-                                          },
-                                        ),
-                                        TextFormField(
-                                          decoration:
-                                              InputDecoration(labelText: '順位'),
-                                          onChanged: (value) => rank2 = value,
-                                        ),
-                                        DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                            labelText: 'お酒',
+                                          TextFormField(
+                                            controller: _rankController1,
+                                            decoration: InputDecoration(
+                                                labelText: '順位'),
+                                            onChanged: (value) => rank1 = value,
                                           ),
-                                          value: dropdownValue2,
-                                          items: sakeList
-                                              .map((String list) =>
-                                                  DropdownMenuItem(
-                                                      value: list,
-                                                      child: Text(list)))
-                                              .toList(),
-                                          onChanged: (String? value) {
-                                            setState(() {
-                                              dropdownValue2 = value!;
-                                            });
-                                          },
-                                        ),
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                              labelText: 'お酒の量'),
-                                          onChanged: (value) => amount2 = value,
-                                        ),
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                              labelText: 'お酒の度数'),
-                                          onChanged: (value) => ratio2 = value,
-                                        ),
-                                      ],
-                                    ))),
-                                Card(
-                                  elevation: 8,
-                                  child: Form(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                            labelText: '名前',
+                                          DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                              labelText: 'お酒',
+                                            ),
+                                            value: dropdownValue1,
+                                            items: sakeList
+                                                .map((String list) =>
+                                                    DropdownMenuItem(
+                                                        value: list,
+                                                        child: Text(list)))
+                                                .toList(),
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                dropdownValue1 = value!;
+                                              });
+                                            },
                                           ),
-                                          value: selectedUser3Value,
-                                          items: nameList
-                                              .map((String list) =>
-                                                  DropdownMenuItem(
-                                                      value: list,
-                                                      child: Text(list)))
-                                              .toList(),
-                                          onChanged: (String? value) {
-                                            setState(() {
-                                              selectedUser3Value = value!;
-                                            });
-                                          },
-                                        ),
-                                        TextFormField(
-                                          decoration:
-                                              InputDecoration(labelText: '順位'),
-                                          onChanged: (value) => rank3 = value,
-                                        ),
-                                        DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                            labelText: 'お酒',
+                                          TextFormField(
+                                            controller: _amountController1,
+                                            decoration: InputDecoration(
+                                                labelText: 'お酒の量'),
+                                            onChanged: (value) =>
+                                                amount1 = value,
                                           ),
-                                          value: dropdownValue3,
-                                          items: sakeList
-                                              .map((String list) =>
-                                                  DropdownMenuItem(
-                                                      value: list,
-                                                      child: Text(list)))
-                                              .toList(),
-                                          onChanged: (String? value) {
-                                            setState(() {
-                                              dropdownValue3 = value!;
-                                            });
-                                          },
-                                        ),
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                              labelText: 'お酒の量'),
-                                          onChanged: (value) => amount3 = value,
-                                        ),
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                              labelText: 'お酒の度数'),
-                                          onChanged: (value) => ratio3 = value,
-                                        ),
-                                      ],
+                                          TextFormField(
+                                            controller: _ratioController1,
+                                            decoration: InputDecoration(
+                                                labelText: 'お酒の度数'),
+                                            onChanged: (value) =>
+                                                ratio1 = value,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ElevatedButton(
-                                  child: const Text('記録する'),
-                                  onPressed: () {
-                                    final params = [];
-                                    if (rank1 != null) {
-                                      params.add({
-                                        "name": selectedUser1Value,
-                                        "rank": int.parse(rank1),
-                                        "sake": dropdownValue1,
-                                        "amount": amount1 == null
-                                            ? 0
-                                            : int.parse(amount1),
-                                        "ratio": ratio1 == null
-                                            ? 0
-                                            : int.parse(ratio1)
-                                      });
-                                    }
-                                    if (rank2 != null) {
-                                      params.add({
-                                        "name": selectedUser2Value,
-                                        "rank": int.parse(rank2),
-                                        "sake": dropdownValue2,
-                                        "amount": amount2 == null
-                                            ? 0
-                                            : int.parse(amount2),
-                                        "ratio": ratio2 == null
-                                            ? 0
-                                            : int.parse(ratio2)
-                                      });
-                                    }
-                                    if (rank3 != null) {
-                                      params.add({
-                                        "name": selectedUser3Value,
-                                        "rank": int.parse(rank3),
-                                        "sake": dropdownValue3,
-                                        "amount": amount3 == null
-                                            ? 0
-                                            : int.parse(amount3),
-                                        "ratio": ratio3 == null
-                                            ? 0
-                                            : int.parse(ratio3)
-                                      });
-                                    }
-                                    if (!params.isEmpty) {
-                                      final response = http.post(
-                                          Uri.parse(
-                                              'http://127.0.0.1:3000/battle'),
-                                          headers: <String, String>{
-                                            'Content-Type':
-                                                'application/json; charset=UTF-8',
-                                          },
-                                          body: jsonEncode(params));
-                                    }
-                                  },
-                                ),
-                              ]);
+                                  Card(
+                                      elevation: 8,
+                                      child: Form(
+                                          child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                              labelText: '名前',
+                                            ),
+                                            value: selectedUser2Value,
+                                            items: nameList
+                                                .map((String list) =>
+                                                    DropdownMenuItem(
+                                                        value: list,
+                                                        child: Text(list)))
+                                                .toList(),
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                selectedUser2Value = value!;
+                                              });
+                                            },
+                                          ),
+                                          TextFormField(
+                                            controller: _rankController2,
+                                            decoration: InputDecoration(
+                                                labelText: '順位'),
+                                            onChanged: (value) => rank2 = value,
+                                          ),
+                                          DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                              labelText: 'お酒',
+                                            ),
+                                            value: dropdownValue2,
+                                            items: sakeList
+                                                .map((String list) =>
+                                                    DropdownMenuItem(
+                                                        value: list,
+                                                        child: Text(list)))
+                                                .toList(),
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                dropdownValue2 = value!;
+                                              });
+                                            },
+                                          ),
+                                          TextFormField(
+                                            controller: _amountController2,
+                                            decoration: InputDecoration(
+                                                labelText: 'お酒の量'),
+                                            onChanged: (value) =>
+                                                amount2 = value,
+                                          ),
+                                          TextFormField(
+                                            controller: _ratioController2,
+                                            decoration: InputDecoration(
+                                                labelText: 'お酒の度数'),
+                                            onChanged: (value) =>
+                                                ratio2 = value,
+                                          ),
+                                        ],
+                                      ))),
+                                  Card(
+                                    elevation: 8,
+                                    child: Form(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                              labelText: '名前',
+                                            ),
+                                            value: selectedUser3Value,
+                                            items: nameList
+                                                .map((String list) =>
+                                                    DropdownMenuItem(
+                                                        value: list,
+                                                        child: Text(list)))
+                                                .toList(),
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                selectedUser3Value = value!;
+                                              });
+                                            },
+                                          ),
+                                          TextFormField(
+                                            controller: _rankController3,
+                                            decoration: InputDecoration(
+                                                labelText: '順位'),
+                                            onChanged: (value) => rank3 = value,
+                                          ),
+                                          DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                              labelText: 'お酒',
+                                            ),
+                                            value: dropdownValue3,
+                                            items: sakeList
+                                                .map((String list) =>
+                                                    DropdownMenuItem(
+                                                        value: list,
+                                                        child: Text(list)))
+                                                .toList(),
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                dropdownValue3 = value!;
+                                              });
+                                            },
+                                          ),
+                                          TextFormField(
+                                            controller: _amountController3,
+                                            decoration: InputDecoration(
+                                                labelText: 'お酒の量'),
+                                            onChanged: (value) =>
+                                                amount3 = value,
+                                          ),
+                                          TextFormField(
+                                            controller: _ratioController3,
+                                            decoration: InputDecoration(
+                                                labelText: 'お酒の度数'),
+                                            onChanged: (value) =>
+                                                ratio3 = value,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    child: const Text('記録する'),
+                                    onPressed: () {
+                                      final params = [];
+                                      if (rank1 != null) {
+                                        params.add({
+                                          "name": selectedUser1Value,
+                                          "rank": int.parse(rank1),
+                                          "sake": dropdownValue1,
+                                          "amount": amount1 == null
+                                              ? 0
+                                              : int.parse(amount1),
+                                          "ratio": ratio1 == null
+                                              ? 0
+                                              : int.parse(ratio1)
+                                        });
+                                      }
+                                      if (rank2 != null) {
+                                        params.add({
+                                          "name": selectedUser2Value,
+                                          "rank": int.parse(rank2),
+                                          "sake": dropdownValue2,
+                                          "amount": amount2 == null
+                                              ? 0
+                                              : int.parse(amount2),
+                                          "ratio": ratio2 == null
+                                              ? 0
+                                              : int.parse(ratio2)
+                                        });
+                                      }
+                                      if (rank3 != null) {
+                                        params.add({
+                                          "name": selectedUser3Value,
+                                          "rank": int.parse(rank3),
+                                          "sake": dropdownValue3,
+                                          "amount": amount3 == null
+                                              ? 0
+                                              : int.parse(amount3),
+                                          "ratio": ratio3 == null
+                                              ? 0
+                                              : int.parse(ratio3)
+                                        });
+                                      }
+                                      if (!params.isEmpty) {
+                                        final response = http.post(
+                                            Uri.parse(
+                                                'http://127.0.0.1:3000/battle'),
+                                            headers: <String, String>{
+                                              'Content-Type':
+                                                  'application/json; charset=UTF-8',
+                                            },
+                                            body: jsonEncode(params));
+
+                                        // postした後に、順位とお酒の量・度数をcleanする
+                                        setState(() {
+                                          _rankController1.clear();
+                                          _rankController2.clear();
+                                          _rankController3.clear();
+                                          _amountController1.clear();
+                                          _amountController2.clear();
+                                          _amountController3.clear();
+                                          _ratioController1.clear();
+                                          _ratioController2.clear();
+                                          _ratioController3.clear();
+                                        });
+                                      }
+                                    },
+                                  ),
+                                ],
+                              );
                             }
                             return Center(child: Text('エラーが発生しました'));
                           });
-                    } else if (snapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
                       return Center(child: Text("エラーが発生しました"));
                     }
